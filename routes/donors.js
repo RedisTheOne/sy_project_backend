@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 //CREATE DONOR
 router.post('/create', (req, res) => {
     //CHECK IF ALL THE FIELDS ARE INCLUDED
-    if(req.body.name && req.body.surname && req.body.address && req.body.username && req.body.password) {
+    if(req.body.name && req.body.surname && req.body.address && req.body.username && req.body.password && req.body.phone_number && req.body.email) {
         //CHECK IF NUMBER IS TAKEN
         Donor
             .findOne({username: req.body.username})
@@ -36,7 +36,10 @@ router.post('/create', (req, res) => {
                         surname: req.body.surname,
                         address: req.body.address,
                         username: req.body.username,
-                        password: req.body.password
+                        password: req.body.password,
+                        created_at: Date.now(),
+                        email: req.body.email,
+                        phone_number: req.body.phone_number
                     })
                     //SAVE DONOR
                     donor
@@ -89,9 +92,9 @@ router.post('/login', (req, res) => {
 
 //REMOVE
 router.delete('/remove', (req, res) => {
-    if(req.body.username && req.body.password) {
+    if(req.body.username) {
         Donor
-            .deleteOne({username: req.body.username, password: req.body.password})
+            .deleteOne({username: req.body.username})
             .then(() => {
                 res.json({
                     status: true,

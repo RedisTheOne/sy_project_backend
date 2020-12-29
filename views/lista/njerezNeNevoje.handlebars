@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/styles/lista.css">
+<div class="container">
+    <h2>LISTA E NJEREZVE NE NEVOJE | {{length}}</h2>
+    <div class="form-gorup">
+        <input type="text" placeholder="Kerko me emer:" class="form-control" id="filter">
+        <br>
+    </div>
+    <table>
+        <thead>
+            <th>Numri</th>
+            <th>Emri</th>
+            <th>Mbiemri</th>
+            <th>Email</th>
+            <th>Numri Celular</th>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr class="table-row">
+                <td>{{number}}</td>
+                <td class="name">{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{email}}</td>
+                <td>{{phone_number}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/listaNjerezNeNevoje.js"></script>

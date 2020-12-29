@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/styles/lista.css">
+<div class="container">
+    <h2>LISTA E DONATOREVE | {{length}}</h2>
+    <div class="form-gorup">
+        <input type="text" placeholder="Kerko me username:" class="form-control" id="filter">
+        <br>
+    </div>
+    <table>
+        <thead>
+            <th>Username</th>
+            <th>Emri</th>
+            <th>Mbiemri</th>
+            <th>Email</th>
+            <th>Numri Celular</th>
+        </thead>
+        <tbody>
+            {{#each donors}}
+            <tr class="table-row">
+                <td class="username">{{username}}</td>
+                <td>{{name}}</td>
+                <td>{{surname}}</td>
+                <td>{{email}}</td>
+                <td>{{phone_number}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script src="/js/listaDonator.js"></script>

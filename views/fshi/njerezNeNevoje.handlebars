@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/styles/home.css">
+
+<div class="container">
+    <h1>SELEKTONI NJERIUN NE NEVOJE QE DONI TE FSHINI</h1>
+    <input type="text" class="form-control" placeholder="Kerko:" id="filter">
+    <br>
+    <select class="form-control">
+        {{#each users}}
+        <option class="select-option" id="{{number}}">{{name}} {{surname}}</option>
+        {{/each}}
+    </select>
+    <br>
+    <button class="btn btn-danger" id="delete-btn">FSHI</button>
+</div>
+
+<script src="/js/fshiNjerezNeNevoje.js"></script>

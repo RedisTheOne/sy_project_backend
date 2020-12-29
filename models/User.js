@@ -28,6 +28,14 @@ const schema = mongoose.Schema({
     email: {
         type: String,
         required: true
+    },
+    created_at: {
+        type: Date,
+        required: true
+    },
+    phone_number: {
+        type: String,
+        required: true
     }
 })
 

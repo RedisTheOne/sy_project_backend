@@ -1,0 +1,27 @@
+/** @format */
+
+body {
+    background-color: #e8f1f2;
+}
+
+table,
+th,
+td {
+    border: 1px solid #3e3e3e3e;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td,
+th {
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

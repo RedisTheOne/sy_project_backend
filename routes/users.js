@@ -22,37 +22,31 @@ router.get('/:id', async (req, res) => {
 })
 
 //CREATE USER
-router.post('/create', (req, res) => {
+router.post('/create', async (req, res) => {
     //CHECK IF ALL THE FIELDS ARE INCLUDED
-    if(req.body.name && req.body.surname && req.body.address && req.body.number && req.body.password && req.body.description) {
-        //CHECK IF NUMBER IS TAKEN
-        User
-            .findOne({number: req.body.number})
-            .then(u => {
-                if(!u) {
-                    //CREATE USER
-                    const user = new User({
-                        name: req.body.name,
-                        surname: req.body.surname,
-                        address: req.body.address,
-                        number: req.body.number,
-                        password: req.body.password,
-                        description: req.body.description
-                    })
-                    //SAVE USER
-                    user
-                        .save()
-                        .then(() => {
-                            res.json({
-                                status: true,
-                                msg: 'User created successfully'
-                            })
-                        })
-                } else
-                    res.json({
-                        status: false,
-                        msg: 'This number is already taken'
-                    })
+    if(req.body.name && req.body.surname && req.body.address && req.body.password && req.body.description && req.body.email && req.body.phone_number) {
+        //GET THE LATEST NUMBER
+        const lastUser = await User.findOne({}).sort({ created_at: -1 })
+        //CREATE USER
+        const user = new User({
+            name: req.body.name,
+            surname: req.body.surname,
+            address: req.body.address,
+            number: lastUser.number + 1,
+            password: req.body.password,
+            description: req.body.description,
+            created_at: Date.now(),
+            email: req.body.email,
+            phone_number: req.body.phone_number
+        })
+        //SAVE USER
+        user
+            .save()
+            .then(() => {
+                res.json({
+                    status: true,
+                    msg: 'User created successfully'
+                })
             })
     } else
         res.json({
@@ -90,9 +84,9 @@ router.post('/login', (req, res) => {
 
 //REMOVE
 router.delete('/remove', (req, res) => {
-    if(req.body.number && req.body.password) {
+    if(req.body.number) {
         User
-            .deleteOne({number: req.body.number, password: req.body.password})
+            .deleteOne({number: req.body.number})
             .then(() => {
                 res.json({
                     status: true,
