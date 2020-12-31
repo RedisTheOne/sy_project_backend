@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/styles/shto.css">
+
+<input type="hidden" id="username" value="{{username}}">
+
+{{#with user}}
+<div class="container">
+    <h1 style="text-transform: uppercase;">MODIFIKO {{name}} {{surname}}</h1>
+    <form action="">
+        <div class="form-group">
+            <label for="name">Emri:</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{name}}">
+        </div>
+        <div class="form-group">
+            <label for="surname">Mbiemri:</label>
+            <input type="text" name="surname" id="surname" class="form-control" value="{{surname}}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="form-control" value="{{email}}">
+        </div>
+        <div class="form-group">
+            <label for="address">Adresa:</label>
+            <input type="text" name="address" id="address" class="form-control" value="{{address}}">
+        </div>
+        <div class="form-group">
+            <label for="phone_number">Numri telefonit:</label>
+            <input type="cel" name="phone_number" id="phone_number" class="form-control" value="{{phone_number}}">
+        </div>
+        <input id="addBtn" type="submit" value="MODIFIKO" class="btn btn-primary">
+    </form>
+</div>
+{{/with}}
+<script src="/js/modifikoDonator.js"></script>

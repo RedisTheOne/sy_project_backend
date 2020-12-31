@@ -4,6 +4,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
 const exphbs  = require('express-handlebars')
+const ChromeLauncher = require('chrome-launcher');
 
 //DB SETUP
 mongoose.connect('mongodb+srv://redus:redis06122002!@cluster0-xwsm9.mongodb.net/sy_project?retryWrites=true&w=majority', {useUnifiedTopology: true, useNewUrlParser: true})
@@ -29,4 +30,10 @@ app.use('/', require('./routes/views'))
 app.use(express.static('public'))
 
 //LISTEN
-app.listen(PORT, () => console.log(`Server started at port: ${PORT}`))
+app.listen(PORT, () => {
+    ChromeLauncher.launch({
+        startingUrl: `http://localhost:${PORT}`
+    }).then(chrome => {
+        console.log(`Server started at port: ${PORT}`)
+    });
+})

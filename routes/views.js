@@ -36,4 +36,41 @@ router.get('/fshi/njerez-ne-nevoje', async (req, res) => {
     })
 })
 
+router.get('/fshi/donator', async (req, res) => {
+    const users = await Donor.find({}).lean()
+    res.render('fshi/donator', {
+        users
+    })
+})
+
+router.get('/modifiko/njerez-ne-nevoje', async (req, res) => {
+    const users = await User.find({}).lean()
+    res.render('modifiko/njerezNeNevoje', {
+        users: users
+    })
+})
+
+router.get('/modifiko/njerez-ne-nevoje/:number', async (req, res) => {
+    const user = await User.findOne({ number: req.params.number }).lean()
+    res.render('modifiko/njeriNeNevoje', {
+        user,
+        number: req.params.number
+    })
+})
+
+router.get('/modifiko/donator', async (req, res) => {
+    const users = await Donor.find({}).lean()
+    res.render('modifiko/donator', {
+        users: users
+    })
+})
+
+router.get('/modifiko/donator/:username', async (req, res) => {
+    const user = await Donor.findOne({ username: req.params.username }).lean()
+    res.render('modifiko/njeDonator', {
+        user,
+        username: req.params.username
+    })
+})
+
 module.exports = router

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/styles/home.css">
+
+<div class="container">
+    <h1>SELEKTONI DONATORIN QE DONI TE MODIFIKONI</h1>
+    <input type="text" class="form-control" placeholder="Kerko:" id="filter">
+    <br>
+    <select class="form-control">
+        {{#each users}}
+        <option class="select-option" id="{{username}}">{{name}} {{surname}}</option>
+        {{/each}}
+    </select>
+    <br>
+    <button class="btn btn-primary" id="update-btn">MODIFIKO</button>
+</div>
+
+<script>
+    const options = document.querySelectorAll('.select-option')
+
+    document.querySelector('select').selectedIndex = -1
+
+    document.getElementById('filter').addEventListener('input', (e) => {
+        const value = e.target.value
+        if (value.length === 0) {
+            options.forEach((o) => o.style.display = '');
+        } else {
+            options.forEach((o) => {
+                if (o.innerHTML.toLowerCase().indexOf(value.toLowerCase()) > -1)
+                    o.style.display = ''
+                else
+                    o.style.display = 'none'
+            })
+            document.querySelector('select').selectedIndex = -1
+        }
+    });
+
+    document.getElementById('update-btn').addEventListener('click', (e) => {
+        const select = document.querySelector('select')
+        window.location.href = `/modifiko/donator/${select.options[select.selectedIndex].id}`
+    });
+
+</script>

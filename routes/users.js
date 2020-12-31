@@ -100,4 +100,27 @@ router.delete('/remove', (req, res) => {
         })
 })
 
+//UPDATE
+router.post('/update', async (req, res) => {
+    //CHECK IF ALL THE FIELDS ARE INCLUDED
+    if(req.body.name && req.body.surname && req.body.address && req.body.number && req.body.description && req.body.email && req.body.phone_number) {
+        await User.updateOne({ number: req.body.number }, { 
+            name: req.body.name,
+            surname: req.body.surname,
+            address: req.body.address,
+            description: req.body.description,
+            email: req.body.email,
+            phone_number: req.body.phone_number
+        })
+        res.json({
+            status: true,
+            msg: 'User updated successfully'
+        })
+    } else
+        res.json({
+            status: false,
+            msg: 'Plase fill required fields'
+        })
+})
+
 module.exports = router
